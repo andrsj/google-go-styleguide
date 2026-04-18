@@ -1,7 +1,7 @@
 {
   "name": "google-go-styleguide",
   "description": "Three Claude Code skills for reviewing Go code against Google's Go Style Guide framework: the canonical Style Guide, the normative Style Decisions, and the auxiliary Best Practices. Each skill runs as a parallel fan-out of subagents — one per rule (or per section) — so reviews stay focused and the main context stays small. Activates only on explicit request.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Andrii Derkach"
   },
