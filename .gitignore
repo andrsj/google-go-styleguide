@@ -1,0 +1,11 @@
+.DS_Store
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+node_modules/
+
+# Build-process metadata; not part of the published plugin
+progress.md
+
