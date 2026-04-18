@@ -20,20 +20,34 @@ Where they conflict, the higher-precedence document wins. The skills inherit tha
 
 ## Install
 
-This plugin is **not published to any marketplace** — install it manually by cloning the repo and either loading it as a plugin or copying individual skills into your local Claude skills directory.
+This repo doubles as a [Claude Code plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces) (`.claude-plugin/marketplace.json`) — so it's also installable via the official `/plugin install` flow. Three install paths, in order of recommendation:
 
-### Option 1 — As a plugin (loads all 3 skills, namespaced)
+### Option 1 — Via the marketplace (recommended)
+
+Inside any Claude Code session, run:
+
+```text
+/plugin marketplace add andrsj/google-go-styleguide
+/plugin install google-go-styleguide@andrsj-skills
+/reload-plugins
+```
+
+The plugin is registered globally (user scope by default), available in every project. Skills appear namespaced as `/google-go-styleguide:guide-review`, `/google-go-styleguide:decisions-review`, `/google-go-styleguide:best-practices-review`. Updates flow automatically when you run `/plugin marketplace update andrsj-skills`.
+
+### Option 2 — `--plugin-dir` (for development / live-edit)
+
+If you've cloned the repo locally and want to iterate on skill files with instant feedback, start Claude Code with `--plugin-dir` pointing at the clone:
 
 ```bash
 git clone https://github.com/andrsj/google-go-styleguide.git
 claude --plugin-dir ./google-go-styleguide
 ```
 
-All three skills appear under the `google-go-styleguide:` namespace (run `/help` to confirm). Edits to skill files pick up live with `/reload-plugins`. Re-run the command in any project where you want the skills available.
+Edits to any skill file pick up live with `/reload-plugins` — no re-install needed.
 
-### Option 2 — Standalone (one skill, no namespace)
+### Option 3 — Standalone copy (one skill, no namespace)
 
-If you only want one of the skills, copy it directly into your personal Claude skills directory:
+If you only want one of the skills and don't care about the plugin namespace:
 
 ```bash
 git clone https://github.com/andrsj/google-go-styleguide.git
@@ -41,7 +55,7 @@ cp -R google-go-styleguide/skills/guide-review ~/.claude/skills/
 # Repeat for decisions-review and best-practices-review as needed.
 ```
 
-The skill then activates as `/guide-review` (un-namespaced — shorter to type, but no collision protection if you have another skill with the same name).
+The skill then activates as `/guide-review` (un-namespaced).
 
 ## How a review works
 
