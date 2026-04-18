@@ -22,6 +22,11 @@ This skill does **not** auto-activate on `.go` files. Decisions is opinionated, 
 
 Reviews run as a **parallel fan-out of subagents**, one per *section* (not one per individual rule). Each section file groups all the related decisions for one topic — so each subagent reasons coherently about (e.g.) all naming decisions together, instead of fragmenting tightly coupled rules across separate dispatches.
 
+> [!IMPORTANT]
+> **Before any subagent fan-out**, ASK the user which model to use for the per-section subagents: `opus` (highest quality, slowest), `sonnet` (balanced), or `haiku` (cheapest, fastest). Wait for their answer — do not pick for them. Pass the chosen model name to every dispatched subagent via the Task tool's `model` parameter.
+>
+> Skip this step only for the *Single-rule question* flow below — it loads one section file directly in the main thread, no subagents.
+
 ### Full review
 
 1. Identify the Go files in scope and hold only their paths in the main thread.
